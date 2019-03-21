@@ -6,7 +6,7 @@ setup(
     version='1.0',
     packages=find_packages(),
     long_description=open(join(dirname(__file__), 'README.md')).read(),
-    entry_point={
+    entry_points={
         'console_scripts':
             ['helloworld = src.core:print_message']
         }
