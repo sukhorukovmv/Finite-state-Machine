@@ -7,6 +7,7 @@ setup(
     name='finiteStateMachine',
     include_package_data=True,
     version=src.__version__,
+    test_suite='./test/tests',
     packages=find_packages(),
     long_description=open(join(dirname(__file__), 'README.md')).read(),
     entry_points={
