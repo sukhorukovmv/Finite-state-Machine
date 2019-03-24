@@ -9,7 +9,13 @@ setup(
     packages=find_packages(),
     long_description=open(join(dirname(__file__), 'README.md')).read(),
     entry_points={
-        'console_scripts':
-            ['helloworld = src.core:print_message']
-        }
+        'console_scripts':[
+            'helloworld = src.core:print_message', 
+            'serve = src.web:run_server',
+            ]
+        },
+
+    install_requires=[
+        'Flask==0.8'    
+    ]
     )
