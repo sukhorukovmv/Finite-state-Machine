@@ -28,7 +28,7 @@ setup(
     },
 
     install_requires=[ # all libraries on which the package depends, except standart library
-        'Flask==0.9'    
+        'Flask'    
     ]
 )
 #$ python -m unittest discover
