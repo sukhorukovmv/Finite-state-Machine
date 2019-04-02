@@ -1,3 +1,5 @@
 graphviz
 Flask==1.0.2
 flask-mysqldb
+Flask-WTF
+passlib
