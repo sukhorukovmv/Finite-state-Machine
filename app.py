@@ -14,19 +14,14 @@ app.config.from_object(Config)
 # init MYSQL
 mysql = MySQL(app)
 
-#Articles = Articles()
-
-# Index
 @app.route('/')
 def index():
     return render_template('home.html')
-
 
 # About
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 # Articles
 @app.route('/articles')
@@ -46,7 +41,6 @@ def articles():
         return render_template('articles.html', msg=msg)
     # Close connection
     cur.close()
-
 
 #Single Article
 @app.route('/article/<string:id>/')
@@ -275,6 +269,4 @@ def delete_article(id):
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
-    ##app.secret_key='secret123'
-    ##app.run(debug=True)
     app.run()
