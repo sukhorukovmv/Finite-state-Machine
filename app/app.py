@@ -1,12 +1,22 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, jsonify
 from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from functools import wraps
 from config import Config
+from forms import RegisterForm, ArticleForm
+from flask_login import login_required
+
+import os
+from flask_login import LoginManager
+from flask_openid import OpenID
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+lm = LoginManager()
+lm.init_app(app)
+oid = OpenID(app, os.path.join(basedir, 'tmp'))
 # init MYSQL
 mysql = MySQL(app)
 
@@ -206,6 +216,22 @@ def delete_article(id):
     cur.close()
     flash('Article Deleted', 'success')
     return redirect(url_for('dashboard'))
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
+@app.route('/_add_numbers', methods=['POST'])
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
 
 if __name__ == '__main__':
     app.run()
