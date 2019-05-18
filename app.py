@@ -20,7 +20,10 @@ oid = OpenID(app, os.path.join(basedir, 'tmp'))
 # init MYSQL
 mysql = MySQL(app)
 
+<<<<<<< HEAD:app/app.py
 # Index
+=======
+>>>>>>> 25d2394f434b39951c7dd48e0ea62929313b8dfe:app.py
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -45,7 +48,6 @@ def articles():
         return render_template('articles.html', msg=msg)
     # Close connection
     cur.close()
-
 
 #Single Article
 @app.route('/article/<string:id>/')
