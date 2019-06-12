@@ -18,6 +18,23 @@ function step(num) {
     return i;
 }
 
+function createNodesDictionary(arr) {
+    step = Number(step(arr.length));
+    var dict = {}; 
+    //метод который должен вернуть json строку , после она должна передаваться на back
+    for (var i = step; i < arr.length; i = i + step){
+        dict[arr[i]] = null;
+        var d = {};
+        for (var j = 1; j < step; j++){
+            if (arr[i + j] != 0){
+                d[arr[j]] = arr[i + j];
+                dict[arr[i]] = d;
+            }   
+        }
+    }
+    return dict;
+}
+
 //считывает и строит граф, наверное стоит назвать create graph
 function readTable(table) {
     var arr = [];
@@ -28,25 +45,23 @@ function readTable(table) {
             });
         });
 
-        step = Number(step(arr.length));
-        var dict = {};
+        nodesDictionary = createNodesDictionary(arr);
 
-        //метод который должен вернуть json строку , после она должна передаваться на back
-        for (var i = step; i < arr.length; i = i + step){
-            dict[arr[i]] = null;
-            var d = {};
-            for (var j = 1; j < step; j++){
-                if (arr[i + j] != 0){
-                    d[arr[j]] = arr[i + j];
-                    dict[arr[i]] = d;
-                }   
-            }
-        }
+        console.log(JSON.stringify(nodesDictionary));
 
-       // var stringDict = JSON.strigify(dict);
-        var obj = {"first_name" : "John", "last_name" : "Smith", "location" : "London"}
-        var s = JSON.stringify(dict)
-        console.log(s);
+
+       $.ajax({
+            url: '/_create_picture',
+            dataType: 'html', //тип данных с сервера
+            type: 'POST',
+            contentType: "application/json; charset=utf-8", //устанавливается как часть заголовка, для большей информативности на стороне сервера
+            data: JSON.stringify(nodesDictionary),
+//            success: function(picture){
+                //  $('#picture').prepend('<img src="{{url_for('static', filename='img/result.png')}}" />')
+                
+ //           }
+        });
+
     };
 }
 
