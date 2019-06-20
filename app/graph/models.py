@@ -18,4 +18,3 @@ def createGraph(nodesDictionary):
 
 def drawGraph(Graph):
     Graph.draw('app/static/img/result.png', prog="twopi") # draw to png using circo
-#    Graph.draw(url_for('static', filename='img/result.png'), prog="twopi") # draw to png using circo

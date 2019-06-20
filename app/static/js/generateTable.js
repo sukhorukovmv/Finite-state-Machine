@@ -56,10 +56,13 @@ function readTable(table) {
             type: 'POST',
             contentType: "application/json; charset=utf-8", //устанавливается как часть заголовка, для большей информативности на стороне сервера
             data: JSON.stringify(nodesDictionary),
-//            success: function(picture){
-                //  $('#picture').prepend('<img src="{{url_for('static', filename='img/result.png')}}" />')
+            success: function(){
+                  //$('#picture').prepend('<img src="{{url_for('static', filename='img/result.png')}}" />')
+ //                 $('#picture').append('<img src="/static/img/result.png" />')
+                  
                 
- //           }
+                  $('#picture').load('/_draw_picture')
+            }
         });
 
     };

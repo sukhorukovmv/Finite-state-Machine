@@ -13,8 +13,9 @@ def create_picture():
         nodesDictionary = request.get_json()
 
         drawGraph(createGraph(nodesDictionary))
-        #return send_from_directory("images", filename)
+        return 'nice'
 
-        root_dir = os.path.dirname(os.getcwd())
-        return send_from_directory(os.path.join(root_dir, 'static', 'img'), 'result.png')
-#        send_file('app/static/img/', attachment_filename='result.png')
+
+@module.route('/_draw_picture')
+def draw_picture():
+    return render_template('pictureResult.html')
