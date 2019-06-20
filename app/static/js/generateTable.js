@@ -1,10 +1,10 @@
 function createTable(size) {
-    var table = $('<table class="table"></table>'); //.addClass('foo');
+    var table = $('<table class="table  table-bordered"></table>'); //.addClass('foo');
     var sizeWithNodes = Number(size) + 1;
     for(var i = 0; i < sizeWithNodes; i++){
         var row = $('<tr></tr>');//.text('result ' + i);
         for(var j = 0; j < sizeWithNodes; j++){
-            var element = $('<td></td>').append('<input type="text" value=0>');//.text("result" + j + i); //append(input id ij)
+            var element = $('<td></td>').append('<input class="form-control" type="text" value=0>');//.text("result" + j + i); //append(input id ij)
             row.append(element);
         }
         table.append(row);
@@ -62,6 +62,7 @@ function readTable(table) {
                   
                 
                   $('#picture').load('/_draw_picture')
+
             }
         });
 
@@ -80,7 +81,7 @@ $(document).ready(function(){
         table.html(createTable(countNodes));
 
         //добавление кнопки после построения таблицы под ввод
-        field.append('<input type="button" value="CreateGraph" id="createGraph"/>');
+        field.append('<input class="btn btn-success btn-sm" style="margin-top: 20px" type="button" value="Построить граф" id="createGraph"/>');
         //работа с динамически созданным объектом, field это родитель динамически добавленного объекта, createGraph это динамически добавленный объект
         field.on('click', '#createGraph', readTable(table));
     });

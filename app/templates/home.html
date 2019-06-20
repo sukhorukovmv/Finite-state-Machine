@@ -2,19 +2,30 @@
 
 {% block body %}
   <div class="jumbotron text-center">
-    <h1>Finite State Machine</h1>
-    <p class="lead">This application is built on the Python Flask framework</p>
+    <h1>Моделирование конечных автоматов</h1>
+    <p class="lead">Приложение позволяет строить модели конечных автоматов</p>
     {% if session.logged_in == NULL %}
-      <a href="/register" class="btn btn-primary btn-lg">Register</a>
-      <a href="/login" class="btn btn-success btn-lg">Login</a>
+      <a href="/register" class="btn btn-primary btn-lg">Зарегистрироваться</a>
+      <a href="/login" class="btn btn-success btn-lg">Войти</a>
     {% endif %}
   </div>
 
-    <div id="content">
-        <p>Input count nodes:<input type="number" id="countNodes" > </p>
-        <input type="button" value="Create" id="createTable"/>
-        </p>
-        <div id="table"></div>
+    <div class="jumbotron" id="content">
+        <p>Введите число вершин:<input style="margin-bottom: 20px; width: 100px;" class="form-control" type="number" id="countNodes" label="Введите число вершин:" > </p>
+        <p>Выберите тип автомата</p>
+
+        <div style="margin-bottom: 20px">
+          <label class="radio-inline"><input type="radio" name="optradio" checked>Распознаватель</label>
+          <label class="radio-inline"><input type="radio" name="optradio">Автомат Мили</label>
+          <label class="radio-inline"><input type="radio" name="optradio">Автомат Мура</label>
+        </div>
+        <div style="margin-bottom: 20px">
+          <input class="btn btn-success btn-sm" type="button" value="Создать таблицу" id="createTable"/>
+          <input class="btn btn-primary btn-sm" type="button" value="Сбросить" id="createTable"/>
+        </div>
+
+
+        <div style="margin-bottom: 20px" id="table"></div>
         <div id="picture">
 
         </div>
